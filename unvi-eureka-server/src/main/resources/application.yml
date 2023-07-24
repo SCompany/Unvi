@@ -1,4 +1,16 @@
-#Eureka Server settings
+#Server settings
+server:
+  port: 8761
+
+#Spring settings
+spring:
+  application:
+    name: unvi-eureka-server
+
+#Eureka settings
 eureka:
+  instance:
+    hostname: ${EUREKA_HOSTNAME:localhost}
   client:
     register-with-eureka: false
+    fetch-registry: false
