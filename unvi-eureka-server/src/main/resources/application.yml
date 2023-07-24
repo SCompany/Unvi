@@ -1,0 +1,4 @@
+#Eureka Server settings
+eureka:
+  client:
+    register-with-eureka: false
