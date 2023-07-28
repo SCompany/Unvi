@@ -1,0 +1,10 @@
+#Workflow configuration
+name: Unvi Workflow
+on: workflow_dispatch #Run workflow manually
+
+jobs:
+  firstJob:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Print to console
+        run: echo Hello GH Actions!
