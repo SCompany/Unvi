@@ -1,10 +1,40 @@
 #Workflow configuration
 name: Unvi Workflow
-on: workflow_dispatch #Run workflow manually
+on:
+  push:
+    branches:
+      - '*'
+      - '!master'
 
 jobs:
-  firstJob:
+  test:
     runs-on: ubuntu-latest
-    steps: 
-      - name: Print to console
-        run: echo Hello GH Actions!
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: gradle
+      - name: Make ./gradlew executable
+        run: chmod +x ./gradlew
+      - name: Run verification with tests
+        run: ./gradlew check --warning-mode all
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get repository code
+        uses: actions/checkout@v3
+      - name: Setup JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: gradle
+      - name: Make ./gradlew executable
+        run: chmod +x ./gradlew
+      - name: Run build project
+        run: ./gradlew build --warning-mode all
