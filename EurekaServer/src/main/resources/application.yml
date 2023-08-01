@@ -10,7 +10,10 @@ spring:
 #Eureka settings
 eureka:
   instance:
-    hostname: ${EUREKA_HOSTNAME:localhost}
+    hostname: localhost
   client:
     register-with-eureka: false
     fetch-registry: false
+  dashboard:
+    path: /dashboard
+
