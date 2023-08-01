@@ -7,34 +7,19 @@ on:
       - '!master'
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get repository code
-        uses: actions/checkout@v3
-      - name: Setup JDK 17
-        uses: actions/setup-java@v3
-        with:
-          distribution: temurin
-          java-version: 17
-          cache: gradle
-      - name: Make ./gradlew executable
-        run: chmod +x ./gradlew
-      - name: Run verification with tests
-        run: ./gradlew check --warning-mode all
   build:
-    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get repository code
         uses: actions/checkout@v3
-      - name: Setup JDK 17
-        uses: actions/setup-java@v3
+      - name: Start build
+        run: mvn clean install
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
         with:
-          distribution: temurin
-          java-version: 17
-          cache: gradle
-      - name: Make ./gradlew executable
-        run: chmod +x ./gradlew
-      - name: Run build project
-        run: ./gradlew build --warning-mode all
+          path: target
+          name: unvi-project
+      - name: Get artifact
+        uses: actions/download-artifact@v3
+        with:
+          path: unvi-project
