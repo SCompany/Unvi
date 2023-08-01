@@ -1,0 +1,8 @@
+#Server settings
+server:
+  port: 8088
+
+#Spring settings
+spring:
+  application:
+    name: chat
