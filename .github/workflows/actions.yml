@@ -17,14 +17,6 @@ jobs:
         with:
           distribution: temurin
           java-version: 17
+          cache: maven
       - name: Start build
         run: mvn clean install
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with: #Path to project artifact. Need to specify multi-project path
-          path: /target/**.jar  
-          name: unvi-project
-      - name: Get artifact
-        uses: actions/download-artifact@v3
-        with:
-          path: unvi-project
