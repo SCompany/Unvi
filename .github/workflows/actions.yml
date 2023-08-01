@@ -21,8 +21,8 @@ jobs:
         run: mvn clean install
       - name: Upload artifact
         uses: actions/upload-artifact@v3
-        with:
-          path: /target/**.jar
+        with: #Path to project artifact. Need to specify multi-project path
+          path: /target/**.jar  
           name: unvi-project
       - name: Get artifact
         uses: actions/download-artifact@v3
