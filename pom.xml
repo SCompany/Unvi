@@ -5,7 +5,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>EurekaServer</module>
-		<module>Chat</module>
+		<module>WebChat</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
